@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Heart Cube</title>
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      background: radial-gradient(#ffd6e8, #ffa8c4);
+    }
+
+    .stars {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: transparent;
+    }
+
+    .stars::before {
+      content: '';
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: white;
+      border-radius: 50%;
+      box-shadow:
+        100px 200px #fff, 300px 400px #fff, 500px 100px #fff,
+        700px 300px #fff, 900px 600px #fff, 200px 500px #fff;
+      animation: moveStars 10s linear infinite;
+    }
+
+    @keyframes moveStars {
+      from {
+        transform: translateY(0);
+      }
+      to {
+        transform: translateY(1000px);
+      }
+    }
+
+    .scene {
+      width: 200px;
+      height: 200px;
+      margin: 150px auto;
+      perspective: 600px;
+    }
+
+    .cube {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      transform-style: preserve-3d;
+      animation: spin 10s infinite linear;
+      cursor: pointer;
+    }
+
+    .face {
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      background-color: #fff;
+      border: 2px solid #f06a92;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .face img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .face.front  { transform: rotateY(  0deg) translateZ(100px); }
+    .face.back   { transform: rotateY(180deg) translateZ(100px); }
+    .face.right  { transform: rotateY( 90deg) translateZ(100px); }
+    .face.left   { transform: rotateY(-90deg) translateZ(100px); }
+    .face.top    { transform: rotateX( 90deg) translateZ(100px); }
+    .face.bottom { transform: rotateX(-90deg) translateZ(100px); }
+
+    @keyframes spin {
+      from {
+        transform: rotateX(0deg) rotateY(0deg);
+      }
+      to {
+        transform: rotateX(360deg) rotateY(360deg);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="stars"></div>
+  <div class="scene">
+    <div class="cube" onclick="document.getElementById('bgm').play()">
+      <div class="face front"><img src="https://i.postimg.cc/sXbD0zrY/face1.jpg" /></div>
+      <div class="face back"><img src="https://i.postimg.cc/Yq4GrmDL/face2.jpg" /></div>
+      <div class="face right"><img src="https://i.postimg.cc/hjhjgZFM/face3.jpg" /></div>
+      <div class="face left"><img src="https://i.postimg.cc/wv3CzN7V/face4.jpg" /></div>
+      <div class="face top"><img src="https://i.postimg.cc/d17SkbFg/face5.jpg" /></div>
+      <div class="face bottom"><img src="https://i.postimg.cc/mr3TpQyx/face6.jpg" /></div>
+    </div>
+  </div>
+  <audio id="bgm" src="https://cdn.pixabay.com/download/audio/2023/03/08/audio_7713e71fc5.mp3" preload="auto"></audio>
+</body>
+</html>
